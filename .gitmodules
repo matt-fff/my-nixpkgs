@@ -1,3 +1,0 @@
-[submodule "pkgs/desk/src"]
-	path = pkgs/desk/src
-	url = git@github.com:matt-fff/desk.git

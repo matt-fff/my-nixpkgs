@@ -1,4 +1,7 @@
-{ pkgs ? import <nixpkgs> {}, lib ? pkgs.lib }:
+{ 
+  pkgs ? import <nixpkgs> {}, 
+  lib ? pkgs.lib,
+  unstable ? import <nix-unstable> {} }:
 
 {
   blurlock = pkgs.callPackage ./blurlock {};
@@ -7,4 +10,5 @@
   hyprwall = pkgs.callPackage ./hyprwall {};
   hyprland = pkgs.callPackage ./hyprland {};
   phinger-hyprcursor = pkgs.callPackage ./phinger-hyprcursor {};
+  swww = unstable.callPackage ./swww {};
 }

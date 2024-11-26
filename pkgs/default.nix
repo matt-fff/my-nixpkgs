@@ -10,5 +10,8 @@
   hyprwall = pkgs.callPackage ./hyprwall {};
   hyprland = pkgs.callPackage ./hyprland {};
   phinger-hyprcursor = pkgs.callPackage ./phinger-hyprcursor {};
+  balena-etcher = pkgs.callPackage ./balena-etcher {};
   swww = unstable.callPackage ./swww {};
+  ptouch-driver = pkgs.callPackage ./ptouch-driver {};
+  flameshot = pkgs.callPackage ./flameshot { enableWlrSupport = true; };
 }

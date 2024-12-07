@@ -1,7 +1,7 @@
 { 
-  pkgs ? import <nixpkgs> {}, 
+  pkgs,
   lib ? pkgs.lib,
-  unstable ? import <nix-unstable> {} }:
+  unstable }:
 
 {
   blurlock = pkgs.callPackage ./blurlock {};
@@ -14,4 +14,6 @@
   swww = unstable.callPackage ./swww {};
   ptouch-driver = pkgs.callPackage ./ptouch-driver {};
   flameshot = pkgs.callPackage ./flameshot { enableWlrSupport = true; };
+  waybar = unstable.callPackage ./waybar {};
+  hyprland-autoname-workspaces = unstable.callPackage ./hyprland-autoname-workspaces {};
 }

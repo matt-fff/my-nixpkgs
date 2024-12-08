@@ -3,7 +3,7 @@
 
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-23.11";
-    nixpkgs-unstable.url = "github:NixOS/nixpkgs/nixos-unstable";
+    unstablePkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
   };
 
   outputs = { self, nixpkgs, nixpkgs-unstable }:
@@ -18,7 +18,7 @@
             inherit system;
             config.allowUnfree = true;
           };
-          unstable = import nixpkgs-unstable {
+          unstable = import unstablePkgs {
             inherit system;
             config.allowUnfree = true;
           };

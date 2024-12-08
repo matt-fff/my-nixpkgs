@@ -1,4 +1,43 @@
-let
-  pkgs = import <nixpkgs> {};
-in
-pkgs.callPackage ./package.nix {} 
+{ pkgs }:
+
+pkgs.callPackage ./package.nix { 
+  aquamarine = pkgs.aquamarine; 
+  lib = pkgs.lib;
+  stdenv = pkgs.stdenv;
+  stdenvAdapters = pkgs.stdenvAdapters;
+  fetchFromGitHub = pkgs.fetchFromGitHub;
+  pkg-config = pkgs.pkg-config;
+  makeWrapper = pkgs.makeWrapper;
+  cmake = pkgs.cmake;
+  meson = pkgs.meson;
+  ninja = pkgs.ninja;
+  binutils = pkgs.binutils;
+  cairo = pkgs.cairo;
+  epoll-shim = pkgs.epoll-shim;
+  git = pkgs.git;
+  hyprcursor = pkgs.hyprcursor;
+  hyprlang = pkgs.hyprlang;
+  hyprutils = pkgs.hyprutils;
+  hyprwayland-scanner = pkgs.hyprwayland-scanner;
+  libGL = pkgs.libGL;
+  libdrm = pkgs.libdrm;
+  libexecinfo = pkgs.libexecinfo;
+  libinput = pkgs.libinput;
+  libuuid = pkgs.libuuid;
+  libxkbcommon = pkgs.libxkbcommon;
+  mesa = pkgs.mesa;
+  pango = pkgs.pango;
+  pciutils = pkgs.pciutils;
+  pkgconf = pkgs.pkgconf;
+  python3 = pkgs.python3;
+  systemd = pkgs.systemd;
+  tomlplusplus = pkgs.tomlplusplus;
+  wayland = pkgs.wayland;
+  wayland-protocols = pkgs.wayland-protocols;
+  wayland-scanner = pkgs.wayland-scanner;
+  xorg = pkgs.xorg;
+  xwayland = pkgs.xwayland;
+  debug = false;
+  enableXWayland = true;
+  wrapRuntimeDeps = true;
+} 

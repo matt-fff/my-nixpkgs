@@ -14,10 +14,16 @@
     {
       packages = forAllSystems (system:
         let
-          pkgs = nixpkgs.legacyPackages.${system};
-          unstable = nixpkgs-unstable.legacyPackages.${system};
+          pkgs = import nixpkgs {
+            inherit system;
+            config.allowUnfree = true;
+          };
+          unstable = import nixpkgs-unstable {
+            inherit system;
+            config.allowUnfree = true;
+          };
         in
-        import ./pkgs {
+        import ./default.nix {
           inherit pkgs unstable;
         });
     };

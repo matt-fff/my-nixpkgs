@@ -1,4 +1,3 @@
-let
-  unstable = import <nixos-unstable> {};
-in
+{ unstable }:
+
 unstable.callPackage ./default.nix {} 

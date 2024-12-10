@@ -2,7 +2,7 @@
   description = "My custom package collection";
 
   inputs = {
-    nixpkgs.url = "github:NixOS/nixpkgs/nixos-23.11";
+    nixpkgs.url = "github:NixOS/nixpkgs/nixos-24.11";
     unstablePkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
   };
 

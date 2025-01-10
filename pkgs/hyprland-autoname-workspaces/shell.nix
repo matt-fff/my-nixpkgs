@@ -1,3 +1,4 @@
-{ unstable }:
+{ pkgs }:
 
-unstable.callPackage ./default.nix {} 
+pkgs.callPackage ./default.nix {} 
+

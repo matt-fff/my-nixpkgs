@@ -1,4 +1,3 @@
-let
-  unstable = import <nixos-unstable> {};
-in
-unstable.callPackage ./default.nix {} 
+{ pkgs }:
+
+pkgs.callPackage ./default.nix {} 

@@ -89,8 +89,8 @@ stdenv.mkDerivation (finalAttrs: {
   src = fetchFromGitHub {
     owner = "matt-fff";
     repo = "Waybar";
-    rev = "mw/fix-hypr-wkspc-race-cond";
-    hash = "sha256-7gRVuO66vdy/v0fBgIFRFG3hdw5+gK1ucV9TXrQMvxA=";
+    rev = "hyprland-events-workspaces-v2";
+    hash = "";
   };
 
 

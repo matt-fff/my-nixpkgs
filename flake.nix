@@ -2,8 +2,8 @@
   description = "My custom package collection";
 
   inputs = {
-    nixpkgs.url = "github:NixOS/nixpkgs/nixos-24.11";
-    unstablePkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
+    nixpkgs.url = "nixpkgs/nixos-24.11";
+    unstablePkgs.url = "nixpkgs/nixos-unstable";
   };
 
   outputs = { self, nixpkgs, unstablePkgs }:

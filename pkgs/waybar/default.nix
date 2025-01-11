@@ -84,13 +84,13 @@ let
 in
 stdenv.mkDerivation (finalAttrs: {
   pname = "waybar";
-  version = "0.11.1rc";
+  version = "0.11.1rc2";
 
   src = fetchFromGitHub {
     owner = "matt-fff";
     repo = "Waybar";
-    rev = "hyprland-events-workspaces-v2";
-    hash = "";
+    rev = "mw/hyprland-events-workspaces-v2";
+    hash = "sha256-7XecNiWBrCJi6P9elIFyYtcQqRLv09Zn1Run6dJbvVY=";
   };
 
 

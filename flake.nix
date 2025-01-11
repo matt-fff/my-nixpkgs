@@ -20,6 +20,10 @@
         in
         import ./default.nix {
           inherit pkgs;
-        });
+        } // {
+          # Set one of your packages as default, for example hyprland
+          default = (import ./default.nix { inherit pkgs; }).waybar;
+        }
+      );
     };
 } 

@@ -8,13 +8,13 @@ rustPlatform.buildRustPackage rec {
   version = "1.1.16rc1";
 
   src = fetchFromGitHub {
-    owner = "matt-fff";
+    owner = "hyprland-community";
     repo = "hyprland-autoname-workspaces";
-    rev = "mw/name-cache";
-    hash = "sha256-DRrYehE7BwRNQST+Fh3kct4WNR75s763I2Y1R4yVHNE=";
+    rev = "main";
+    hash = "sha256-ukP+v0MmK6S9T2b+/qZeSwagSJufNU83/uKruNK16zk=";
   };
 
-  cargoHash = "sha256-X/1ZDGtL5xN9g+2YiXwuMg4hGURVLlX8YZzfgP3ipmc=";
+  cargoHash = "sha256-uhnTe6yQc8fFCzXRWfyu6ft254nk/A7jsDlttg7nQ78=";
 
   doCheck = false;
 

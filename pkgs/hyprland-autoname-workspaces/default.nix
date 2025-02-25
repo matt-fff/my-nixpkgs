@@ -10,11 +10,11 @@ rustPlatform.buildRustPackage rec {
   src = fetchFromGitHub {
     owner = "hyprland-community";
     repo = "hyprland-autoname-workspaces";
-    rev = "main";
-    hash = "sha256-ukP+v0MmK6S9T2b+/qZeSwagSJufNU83/uKruNK16zk=";
+    rev = "1.1.16";
+    hash = "sha256-M/3mqO7G2E5NW2uE+X8P4UhEl0r1fPXuxyb1NowJQnY=";
   };
 
-  cargoHash = "sha256-uhnTe6yQc8fFCzXRWfyu6ft254nk/A7jsDlttg7nQ78=";
+  cargoHash = "sha256-8gzph1+oK0nr9nyP5RJ99O/NYTXYMGapSlHxPoVIahI=";
 
   doCheck = false;
 

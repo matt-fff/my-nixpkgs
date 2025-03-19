@@ -90,7 +90,7 @@ stdenv.mkDerivation (finalAttrs: {
     owner = "matt-fff";
     repo = "Waybar";
     rev = "mw/hyprland-events-workspaces-v2";
-    hash = "sha256-bASyTilcggVoIeyuzvfCuAb7lW2ubXUR+/9zqCxrM4U=";
+    hash = "sha256-dG7K1r+dOI2Mu09uyJJc1GWoZZke1CD160qIbVzch5Q=";
   };
 
 

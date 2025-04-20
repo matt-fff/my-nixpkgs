@@ -6,6 +6,7 @@
   SDL2,
   alsa-lib,
   catch2_3,
+  fetchpatch,
   fftw,
   glib,
   gobject-introspection,
@@ -15,7 +16,6 @@
   hyprland,
   iniparser,
   jsoncpp,
-  libcava,
   libdbusmenu-gtk3,
   libevdev,
   libinotify-kqueue,
@@ -41,7 +41,6 @@
   sway,
   udev,
   upower,
-  versionCheckHook,
   wayland,
   wayland-scanner,
   wireplumber,
@@ -56,7 +55,6 @@
   jackSupport ? true,
   mpdSupport ? true,
   mprisSupport ? stdenv.hostPlatform.isLinux,
-  niriSupport ? true,
   nlSupport ? true,
   pipewireSupport ? true,
   pulseSupport ? true,
@@ -71,8 +69,19 @@
   wireplumberSupport ? true,
   withMediaPlayer ? mprisSupport && false,
   nix-update-script,
+  testers,
+  waybar,
 }:
 
+let
+  # Derived from subprojects/cava.wrap
+  libcava.src = fetchFromGitHub {
+    owner = "LukashonakV";
+    repo = "cava";
+    rev = "0.10.4";
+    hash = "sha256-9eTDqM+O1tA/3bEfd1apm8LbEcR9CVgELTIspSVPMKM=";
+  };
+in
 stdenv.mkDerivation (finalAttrs: {
   pname = "waybar";
   version = "0.12.0rc1";
@@ -80,27 +89,24 @@ stdenv.mkDerivation (finalAttrs: {
   src = fetchFromGitHub {
     owner = "Alexays";
     repo = "Waybar";
-    rev = "c8484ebb1d1c85f9faa27019be7deed1c1b27e10";
+    rev = "master";
     hash = "sha256-CqcPJGKhzmLSh+m1/JwJkQxcAd1CLSKPQma58uPhEDY=";
   };
 
   postUnpack = lib.optional cavaSupport ''
     pushd "$sourceRoot"
-    cp -R --no-preserve=mode,ownership ${libcava.src} subprojects/cava-0.10.3
+    cp -R --no-preserve=mode,ownership ${libcava.src} subprojects/cava-0.10.4
     patchShebangs .
     popd
   '';
 
-  nativeBuildInputs =
-    [
-      meson
-      ninja
-      pkg-config
-      wayland-scanner
-      wrapGAppsHook3
-    ]
-    ++ lib.optional withMediaPlayer gobject-introspection
-    ++ lib.optional enableManpages scdoc;
+  nativeBuildInputs = [
+    meson
+    ninja
+    pkg-config
+    wayland-scanner
+    wrapGAppsHook3
+  ] ++ lib.optional withMediaPlayer gobject-introspection ++ lib.optional enableManpages scdoc;
 
   propagatedBuildInputs = lib.optionals withMediaPlayer [
     glib
@@ -169,10 +175,7 @@ stdenv.mkDerivation (finalAttrs: {
       "upower_glib" = upowerSupport;
       "wireplumber" = wireplumberSupport;
     })
-    ++ (lib.mapAttrsToList lib.mesonBool {
-      "experimental" = experimentalPatches;
-      "niri" = niriSupport;
-    });
+    ++ lib.optional experimentalPatches (lib.mesonBool "experimental" true);
 
   env = lib.optionalAttrs systemdSupport {
     PKG_CONFIG_SYSTEMD_SYSTEMDUSERUNITDIR = "${placeholder "out"}/lib/systemd/user";
@@ -190,14 +193,12 @@ stdenv.mkDerivation (finalAttrs: {
       --prefix PYTHONPATH : "$PYTHONPATH:$out/${python3.sitePackages}"
   '';
 
-  nativeInstallCheckInputs = [
-    versionCheckHook
-  ];
-  versionCheckProgramArg = "--version";
-  doInstallCheck = true;
-
   passthru = {
     updateScript = nix-update-script { };
+    tests.version = testers.testVersion {
+      package = waybar;
+      version = "v${finalAttrs.version}";
+    };
   };
 
   meta = {
